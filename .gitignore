@@ -163,6 +163,3 @@ prime/
 stage/
 pip-wheel-metadata/
 .vim/
-
-frontend/
-static/
