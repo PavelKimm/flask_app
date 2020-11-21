@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Сравнение фильмов</title>
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+          integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+            integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+  <a class="navbar-brand" href="/">FILMASH</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Compare<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/rating">Rating</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="text-center">
+                <form action="/compare-films" method="POST">
+                    <img src="static/posters/{{ films[0]['posterfile'] }}" class="rounded" alt="Матрица"
+                         style="height: 300px">
+                    <p>{{ films[0]['filmname'] }}</p>
+                    <input type="hidden" name="win" value="{{ films[0]['id'] }}">
+                    <input type="hidden" name="lose" value="{{ films[1]['id'] }}">
+                    <button class="btn btn-outline-primary" type="submit">Vote</button>
+                    <p>{{ films[0]['filmdesc'] }}</p>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-1 mt-5">
+            <p>VS</p>
+        </div>
+        <div class="col-sm-5">
+            <div class="text-center">
+                <form action="/compare-films" method="POST">
+                    <img src="static/posters/{{ films[1]['posterfile'] }}" class="rounded" alt="Матрица"
+                         style="height: 300px">
+                    <p>{{ films[1]['filmname'] }}</p>
+                    <input type="hidden" name="win" value="{{ films[1]['id'] }}">
+                    <input type="hidden" name="lose" value="{{ films[0]['id'] }}">
+                    <button class="btn btn-outline-primary" type="submit">Vote</button>
+                    <p>{{ films[1]['filmdesc'] }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
