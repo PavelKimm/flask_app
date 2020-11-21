@@ -7,7 +7,6 @@ from flask import g, request, redirect, url_for
 from flask.cli import with_appcontext
 from flask import Flask, render_template
 
-import Film
 from films_repository import get_films_to_compare, save_comparison, get_rating
 
 app = Flask(__name__)
@@ -31,13 +30,13 @@ def close_connection(exception):
 
 @app.route('/')
 def vs():
-    films: Tuple[Film, Film] = get_films_to_compare()
+    films = get_films_to_compare()
     return render_template('vs.html', films=films)
 
 
 @app.route('/rating')
 def rating():
-    films: List[Film] = get_rating()
+    films = get_rating()
     return render_template('rating.html', enumerated_films=enumerate(films))
 
 
